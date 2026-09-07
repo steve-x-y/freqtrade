@@ -1,10 +1,11 @@
+import { researchDecision, RESEARCH_WARMUP } from './research-strategies.ts';
 export type Action = 'BUY' | 'SELL' | 'HOLD';
 export type Decision = { action: Action; allocation: number; confidence: number; reason: string; source: string };
 export type Candle = { time: number; open: number; high: number; low: number; close: number; volume: number };
-export type Agent = { id: string; name: string; style: string; color: string; cash: number; quantity: number; basis: number; realized: number; fees: number; peak: number; drawdown: number; halted: boolean; trades: number; wins: number; closed: number; decision?: Decision };
+export type Agent = { id: string; name: string; style: string; color: string; cash: number; quantity: number; basis: number; realized: number; fees: number; peak: number; drawdown: number; halted: boolean; trades: number; wins: number; closed: number; decision?: Decision; lastExit?: number };
 export type Trade = { id: string; agent: string; time: number; action: Action; price: number; quantity: number; fee: number; realized: number; reason: string; source: string };
 export type Point = { time: number; values: Record<string, number>; benchmark: number };
-export type Settings = { mode: 'arena' | 'single'; selected: string; driver: 'rules' | 'ai'; capital: number; maxExposure: number; maxDrawdown: number; stopLoss: number; feeBps: number; slippageBps: number; model: string };
+export type Settings = { mode: 'arena' | 'single'; selected: string; driver: 'rules' | 'ai'; capital: number; maxExposure: number; maxDrawdown: number; stopLoss: number; feeBps: number; slippageBps: number; model: string; strategyVersion?: 'baseline' | 'research-v2' };
 export type State = { settings: Settings; agents: Agent[]; running: boolean; lastCandle: number; lastTick: number; startedAt: number; benchmarkPrice: number; history: Point[]; trades: Trade[]; error: string | null; candles: Candle[]; price: number; tokens: number; aiCalls: number; cycle: number };
 export const identities = [
   { id: 'atlas', name: 'Atlas', style: 'Trend following: favor sustained direction and moving-average alignment.', color: '#69a8ff' },
@@ -14,6 +15,8 @@ export const identities = [
   { id: 'sage', name: 'Sage', style: 'Capital preservation: low exposure; favor stable trends and avoid volatility.', color: '#f8859d' },
 ];
 export const defaults: Settings = { mode: 'arena', selected: 'atlas', driver: 'rules', capital: 10000, maxExposure: 0.35, maxDrawdown: 0.1, stopLoss: 0.05, feeBps: 40, slippageBps: 5, model: '' };
+export const intervalMinutes=(s:Settings)=>s.strategyVersion==='research-v2'?1440:5;
+export const strategyDecision=(a:Agent,c:Candle[],s:Settings)=>s.strategyVersion==='research-v2'?researchDecision(a,c,s):ruleDecision(a,c);
 export function initial(settings: Settings = defaults): State {
   return { settings: { ...settings }, agents: identities.map(a => ({ ...a, cash: settings.capital, quantity: 0, basis: 0, realized: 0, fees: 0, peak: settings.capital, drawdown: 0, halted: false, trades: 0, wins: 0, closed: 0 })), running: false, lastCandle: 0, lastTick: 0, startedAt: 0, benchmarkPrice: 0, history: [], trades: [], error: null, candles: [], price: 0, tokens: 0, aiCalls: 0, cycle: 0 };
 }
@@ -63,7 +66,7 @@ export function execute(a: Agent, d: Decision, price: number, time: number, s: S
     quantity=value/fill;fee=value*feeRate;a.cash-=value+fee;a.quantity+=quantity;a.basis+=value+fee;
   }else if(d.action==='SELL'&&a.quantity>0){
     quantity=a.quantity;const value=quantity*fill;fee=value*feeRate;realized=value-fee-a.basis;
-    a.cash+=value-fee;a.realized+=realized;a.quantity=0;a.basis=0;a.closed++;if(realized>0)a.wins++;
+    a.cash+=value-fee;a.realized+=realized;a.quantity=0;a.basis=0;a.closed++;a.lastExit=time;if(realized>0)a.wins++;
   }else return null;
   a.fees+=fee;a.trades++;a.drawdown=Math.max(a.drawdown,1-equity(a,price)/a.peak);
   return {id:`${a.id}-${time}-${a.trades}`,agent:a.id,time,action:d.action,price:fill,quantity,fee,realized,reason:d.reason,source:d.source};
@@ -76,16 +79,26 @@ export function mark(state: State, price: number, time: number){
   state.history.push({time,values:Object.fromEntries(state.agents.map(a=>[a.id,equity(a,price)])),benchmark});
   state.history=state.history.slice(-1500);
 }
-export function backtest(candles: Candle[], settings: Settings): State {
-  if(candles.length<50) throw new Error('Insufficient market history.');
+export function backtest(candles: Candle[], settings: Settings, options: {startTime?:number;endTime?:number;lagBars?:number;liquidate?:boolean} = {}): State {
+  const warmup=settings.strategyVersion==='research-v2'?RESEARCH_WARMUP:30;
+  const lag=options.lagBars??0;
+  if(!Number.isInteger(lag)||lag<0||lag>10)throw new Error('Invalid execution lag.');
+  if(candles.length<Math.max(50,warmup+lag+1)) throw new Error('Insufficient market history.');
   const state=initial({...settings,driver:'rules'});
-  for(let i=30;i<candles.length;i++){
-    const past=candles.slice(Math.max(0,i-31),i),bar=candles[i];
+  for(let i=warmup+lag;i<candles.length;i++){
+    const bar=candles[i];
+    if(bar.time<(options.startTime??-Infinity)||bar.time>(options.endTime??Infinity))continue;
+    const end=i-lag,past=candles.slice(Math.max(0,end-Math.max(31,warmup)),end);
     for(const a of state.agents){
       if(settings.mode==='single'&&a.id!==settings.selected) continue;
-      const t=execute(a,ruleDecision(a,past),bar.open,bar.time,settings);if(t)state.trades.push(t);
+      const t=execute(a,strategyDecision(a,past,settings),bar.open,bar.time,settings);if(t)state.trades.push(t);
     }
     mark(state,bar.open,bar.time);state.cycle++;
+  }
+  if(options.liquidate&&state.history.length){
+    const last=state.history.at(-1)!;
+    for(const a of state.agents){if(a.quantity>0){const t=execute(a,{action:'SELL',allocation:0,confidence:0,reason:'Terminal liquidation for research comparison.',source:'Research evaluation'},state.price,last.time,settings);if(t)state.trades.push(t);}}
+    last.values=Object.fromEntries(state.agents.map(a=>[a.id,equity(a,state.price)]));
   }
   state.candles=candles;return state;
 }
