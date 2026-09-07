@@ -1,11 +1,11 @@
 import { env } from 'cloudflare:workers';
 import { z } from 'zod';
-import { initial, identities, execute, ruleDecision, mark, backtest, type State } from '@/lib/engine';
+import { initial, identities, execute, strategyDecision, intervalMinutes, mark, backtest, type State } from '@/lib/engine';
 import { ensure, lock, save, unlock } from '@/lib/store';
 import { getCandles, getPrice } from '@/lib/market';
 import { checkConnection, encrypt, decrypt, aiDecision, providers } from '@/lib/ai';
 export const dynamic='force-dynamic';
-const settingsSchema=z.object({mode:z.enum(['arena','single']),selected:z.enum(['atlas','nova','pulse','vex','sage']),driver:z.enum(['rules','ai']),capital:z.number().min(100).max(1000000),maxExposure:z.number().min(.01).max(.95),maxDrawdown:z.number().min(.01).max(.5),stopLoss:z.number().min(.005).max(.5),feeBps:z.number().min(0).max(200),slippageBps:z.number().min(0).max(200),model:z.string().max(150)}).strict();
+const settingsSchema=z.object({mode:z.enum(['arena','single']),selected:z.enum(['atlas','nova','pulse','vex','sage']),driver:z.enum(['rules','ai']),capital:z.number().min(100).max(1000000),maxExposure:z.number().min(.01).max(.95),maxDrawdown:z.number().min(.01).max(.5),stopLoss:z.number().min(.005).max(.5),feeBps:z.number().min(0).max(200),slippageBps:z.number().min(0).max(200),model:z.string().max(150),strategyVersion:z.enum(['baseline','research-v2']).optional()}).strict();
 function owner(request:Request){const id=request.headers.get('oai-authenticated-user-id');if(!id)throw new Error('Sign in with ChatGPT to access your saved arena.');return id;}
 function secret(){return (env as unknown as Record<string,string>).KEY_ENCRYPTION_SECRET;}
 function json(data:unknown,status=200){return Response.json(data,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});}
@@ -46,23 +46,24 @@ export async function POST(request:Request){
       state.running=true;state.error=null;
     }else if(body.action==='pause'){state.running=false;
     }else if(body.action==='market'){
-      state.candles=await getCandles();state.price=await getPrice();
+      state.candles=await getCandles(intervalMinutes(state.settings));state.price=await getPrice();
     }else if(body.action==='backtest'){
-      const candles=await getCandles();const result=backtest(candles,state.settings);
+      const candles=await getCandles(intervalMinutes(state.settings));const result=backtest(candles,state.settings);
       await unlock(id,token);token='';return json({backtest:result});
     }else if(body.action==='tick'){
       if(!state.running)throw new Error('Start the session before running a cycle.');
       if(Date.now()-state.lastTick<25000)throw new Error('Wait 30 seconds between cycle checks.');
       state.lastTick=Date.now();
       try{
-        const candles=await getCandles(),last=candles.at(-1)!;
-        if(Date.now()-(last.time+100000)>420000 || last.time>Date.now())throw new Error('Market candles are stale. No orders were executed.');
+        const duration=intervalMinutes(state.settings)*60000;
+        const candles=await getCandles(intervalMinutes(state.settings)),last=candles.at(-1)!;
+        if(Date.now()-(last.time+duration)>duration+120000 || last.time+duration>Date.now())throw new Error('Market candles are stale or incomplete. No orders were executed.');
         state.candles=candles;
         if(last.time>state.lastCandle){
           const active=state.agents.filter(a=>state.settings.mode==='arena'||a.id===state.settings.selected);
           const c=state.settings.driver==='ai'&&connectionValue?await decrypt(connectionValue,secret(),id):null;
           // All agents receive one immutable completed-candle snapshot. Model calls run concurrently.
-          const results=await Promise.allSettled(active.map(a=>c&&!a.halted?aiDecision(a,candles,state.settings,c):Promise.resolve({decision:ruleDecision(a,candles),tokens:0})));
+          const results=await Promise.allSettled(active.map(a=>c&&!a.halted?aiDecision(a,candles,state.settings,c):Promise.resolve({decision:strategyDecision(a,candles,state.settings),tokens:0})));
           const price=await getPrice(),time=Date.now();
           for(let i=0;i<active.length;i++){
             const result=results[i];

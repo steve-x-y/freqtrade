@@ -6,8 +6,9 @@ export async function publicKraken(path: string) {
   if(j.error?.length)throw new Error('Kraken rejected the market-data request. Try again later.');
   return j.result;
 }
-export async function getCandles():Promise<Candle[]> {
-  const result=await publicKraken('OHLC?pair=XBTUSD&interval=5');
+export async function getCandles(interval=5):Promise<Candle[]> {
+  if(![5,1440].includes(interval))throw new Error('Unsupported candle interval.');
+  const result=await publicKraken(`OHLC?pair=XBTUSD&interval=${interval}`);
   const entry=Object.entries(result).find(([key])=>key!=='last');
   if(!entry||!Array.isArray(entry[1]))throw new Error('Market feed did not include candles.');
   const candles=(entry[1] as (string|number)[][]).slice(0,-1).map(c=>({time:Number(c[0])*1000,open:Number(c[1]),high:Number(c[2]),low:Number(c[3]),close:Number(c[4]),volume:Number(c[6])}));

@@ -1,4 +1,4 @@
-import { researchDecision, RESEARCH_WARMUP } from './research-strategies.ts';
+import { researchDecision, researchStyles, RESEARCH_WARMUP } from './research-strategies.ts';
 export type Action = 'BUY' | 'SELL' | 'HOLD';
 export type Decision = { action: Action; allocation: number; confidence: number; reason: string; source: string };
 export type Candle = { time: number; open: number; high: number; low: number; close: number; volume: number };
@@ -18,7 +18,7 @@ export const defaults: Settings = { mode: 'arena', selected: 'atlas', driver: 'r
 export const intervalMinutes=(s:Settings)=>s.strategyVersion==='research-v2'?1440:5;
 export const strategyDecision=(a:Agent,c:Candle[],s:Settings)=>s.strategyVersion==='research-v2'?researchDecision(a,c,s):ruleDecision(a,c);
 export function initial(settings: Settings = defaults): State {
-  return { settings: { ...settings }, agents: identities.map(a => ({ ...a, cash: settings.capital, quantity: 0, basis: 0, realized: 0, fees: 0, peak: settings.capital, drawdown: 0, halted: false, trades: 0, wins: 0, closed: 0 })), running: false, lastCandle: 0, lastTick: 0, startedAt: 0, benchmarkPrice: 0, history: [], trades: [], error: null, candles: [], price: 0, tokens: 0, aiCalls: 0, cycle: 0 };
+  return { settings: { ...settings }, agents: identities.map(a => ({ ...a, style:settings.strategyVersion==='research-v2'?researchStyles[a.id]:a.style, cash: settings.capital, quantity: 0, basis: 0, realized: 0, fees: 0, peak: settings.capital, drawdown: 0, halted: false, trades: 0, wins: 0, closed: 0 })), running: false, lastCandle: 0, lastTick: 0, startedAt: 0, benchmarkPrice: 0, history: [], trades: [], error: null, candles: [], price: 0, tokens: 0, aiCalls: 0, cycle: 0 };
 }
 export const equity = (a: Agent, price: number) => a.cash + a.quantity * price;
 const avg = (xs: number[]) => xs.reduce((a,b) => a+b,0)/xs.length;
@@ -79,7 +79,7 @@ export function mark(state: State, price: number, time: number){
   state.history.push({time,values:Object.fromEntries(state.agents.map(a=>[a.id,equity(a,price)])),benchmark});
   state.history=state.history.slice(-1500);
 }
-export function backtest(candles: Candle[], settings: Settings, options: {startTime?:number;endTime?:number;lagBars?:number;liquidate?:boolean} = {}): State {
+export function backtest(candles: Candle[], settings: Settings, options: {startTime?:number;endTime?:number;lagBars?:number;liquidate?:boolean;signalFeeBps?:number} = {}): State {
   const warmup=settings.strategyVersion==='research-v2'?RESEARCH_WARMUP:30;
   const lag=options.lagBars??0;
   if(!Number.isInteger(lag)||lag<0||lag>10)throw new Error('Invalid execution lag.');
@@ -91,7 +91,8 @@ export function backtest(candles: Candle[], settings: Settings, options: {startT
     const end=i-lag,past=candles.slice(Math.max(0,end-Math.max(31,warmup)),end);
     for(const a of state.agents){
       if(settings.mode==='single'&&a.id!==settings.selected) continue;
-      const t=execute(a,strategyDecision(a,past,settings),bar.open,bar.time,settings);if(t)state.trades.push(t);
+      const signalSettings=options.signalFeeBps===undefined?settings:{...settings,feeBps:options.signalFeeBps};
+      const t=execute(a,strategyDecision(a,past,signalSettings),bar.open,bar.time,settings);if(t)state.trades.push(t);
     }
     mark(state,bar.open,bar.time);state.cycle++;
   }

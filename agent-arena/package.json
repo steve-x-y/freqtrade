@@ -13,10 +13,12 @@
     "test": "npm run test:engine",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
-    "test:engine": "node --test tests/engine.test.mjs tests/ai.test.mjs",
+    "test:engine": "node --test tests/engine.test.mjs tests/ai.test.mjs tests/research.test.mjs tests/report.test.mjs",
     "typecheck": "tsc --noEmit",
     "test:runtime": "node --test --test-force-exit tests/runtime.test.mjs",
-    "validate:history": "node research/run-validation.mjs"
+    "validate:history": "node research/run-validation.mjs",
+    "research:develop": "node research/run-v2.mjs develop",
+    "research:evaluate": "node research/run-v2.mjs evaluate"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

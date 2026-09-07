@@ -37,7 +37,7 @@ The hosted version checks every 35 seconds **while the tab is open**; browsers m
 
 This application cannot place live exchange orders. Adding real execution requires selecting a broker/exchange and implementing account reconciliation, persistent order intents, idempotent client order IDs, partial-fill handling, uncertain-result recovery, and exchange-specific quantity constraints. Those cannot be inferred from the user's unnamed trading app. The paper ledger must never be treated as an exchange balance.
 
-Stop loss is checked at observed prices, not continuously or intrabar. Gaps can exceed thresholds. Pausing stops all automated checks and leaves positions open. Results include configured fee and slippage assumptions, but exclude AI API costs, taxes and live market impact. Confidence is self-reported, not calibrated. A maximum 719-bar window (under 60 hours) is much too short to demonstrate profitability.
+Stop loss is checked at observed prices, not continuously or intrabar. Gaps can exceed thresholds. Pausing stops all automated checks and leaves positions open. Results include configured fee and slippage assumptions, but exclude AI API costs, taxes and live market impact. Confidence is self-reported, not calibrated. The original five-minute profile has a maximum 719-bar window (under 60 hours). V2 uses up to 719 daily bars, including 201 warmup bars. Neither window establishes profitability.
 
 ## Development
 
@@ -87,3 +87,24 @@ Implementation verification: 10 engine/AI tests passed; Worker integration cover
 ## Historical validation
 
 See [the full Indonesian report](research/REPORT.md) and [machine-readable results](research/validation-results.json). Rules baseline: 26 wins / 220 closed trades (11.82%), combined return −10.14%; chronological holdout 9/217 (4.15%). These are historical paper simulations, not AI or live performance. Download the pinned dataset with `python3 research/fetch-data.py`, then run `npm run validate:history`.
+
+## Research V2 — daily, experimental
+
+The application now includes `/research`, an Indonesian evidence-backed report with all candidates, validation, benchmarks, cost stresses, yearly failures and source links. Use **Review V2 settings** for an optional daily profile; existing sessions and settings are preserved. A new session is required to change the strategy profile. This button fills a settings draft; it does not place trades or reset data.
+
+V2 uses five frozen daily strategies, 201-day warmup, cost-aware entry thresholds, a three-day exit cooldown and a proposed 10% observation stop. Suggested paper settings use 80bps fee per side, 5bps slippage, 35% entry cap and 10% drawdown halt. The daily market adapter, AI timeframe and cost context are aligned, but historical V2 results use deterministic rules, not AI calls.
+
+Development-only selection (2018–2021) picked **Pulse** before validation/final results were examined. Final BTC test (2024-01-01–2026-05-04): all-five return **+5.25%**, 13/28 closed trades winning (46.43%); Pulse **+1.95%, 1/5 wins**, then halted. A freshly funded Pulse account in 2025 lost **10.01%**. No candidate passed all predeclared evidence gates. Do not select Atlas or Sage retrospectively and claim the winner was known beforehand. This is not a statistically validated edge or a reliable income product.
+
+The report charges terminal liquidation, unlike the app's mark-to-market quick backtest. Primary daily data is a third-party Binance mirror; 1,647 older overlapping OHLC days were cross-checked, not the whole modern series. Research daily risk observations differ from the forward tab's more frequent risk checks. Cost sensitivity freezes signal thresholds at 80bps while varying execution fees; changing costs still changes position sizes, stop basis and halt timing.
+
+```sh
+python3 research/fetch-v2-data.py
+npm run research:develop
+npm run research:evaluate
+npm run test:engine
+npm run typecheck
+npm run build
+```
+
+Reproduction downloads pinned public blobs with checksum verification, without credentials. `EXPERIMENT-V2.md` and `v2-selection.json` preserve the pre-evaluation protocol and source hashes. The five candidate rules were not re-tuned after final evaluation. 20 tests pass: 19 unit/adapter checks plus a server-rendered report consistency check. Browser QA, paid model inference and live broker orders are unverified/not executed; direct outbound market-data access was canceled by the environment's network control and not bypassed.
