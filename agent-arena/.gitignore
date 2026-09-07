@@ -43,3 +43,6 @@ next-env.d.ts
 !.env.example
 *.tsbuildinfo
 .dev.vars*
+
+# Reproducible public market-data mirror
+research/data/*.csv

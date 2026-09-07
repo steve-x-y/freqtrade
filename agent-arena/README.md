@@ -83,3 +83,7 @@ The `.openai/hosting.json` project identity is omitted from the GitHub copy; its
 Validate longer forward results net of all costs, choose and test an exchange integration, add your own authentication and customer isolation for external hosting, set up durable scheduling and monitoring, and define what the product actually promises. This release is an engineering prototype, not evidence of a profitable trading system.
 
 Implementation verification: 10 engine/AI tests passed; Worker integration covers concurrent requests, duplicate candle prevention, authenticated owner isolation, CSRF origin rejection, error pause and separate backtests. Direct outbound Kraken verification from the build environment timed out, so deployed live-feed availability remains unverified. No paid AI inference or exchange order was executed. Browser visual testing was not performed.
+
+## Historical validation
+
+See [the full Indonesian report](research/REPORT.md) and [machine-readable results](research/validation-results.json). Rules baseline: 26 wins / 220 closed trades (11.82%), combined return −10.14%; chronological holdout 9/217 (4.15%). These are historical paper simulations, not AI or live performance. Download the pinned dataset with `python3 research/fetch-data.py`, then run `npm run validate:history`.

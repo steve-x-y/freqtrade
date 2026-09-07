@@ -6,13 +6,13 @@ const sell={...buy,action:'SELL'};
 const hold={...buy,action:'HOLD'};
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`);
 test('buy and sell accounting conserves balances and includes both fees',()=>{
- const a=initial().agents[0];const b=execute(a,buy,100,1,defaults);close(a.cash,6988);close(a.quantity,3000/100.05);close(a.basis,3012);close(a.fees,12);
+ const a=initial().agents[0];const b=execute(a,buy,100,1,defaults);close(a.cash,10000-b.quantity*b.price-b.fee);close(a.basis,b.quantity*b.price+b.fee);close(a.fees,b.fee);close(a.quantity*100/equity(a,100),.3);
  const s=execute(a,sell,110,2,defaults);close(a.cash,10000+s.realized);close(a.realized,s.realized);assert.equal(a.quantity,0);assert.equal(a.closed,1);assert.equal(a.wins,1);close(a.fees,b.fee+s.fee);
 });
 test('risk cap limits exposure and repeated targets do not drain cash',()=>{
  const a=initial().agents[0];execute(a,{...buy,allocation:1},100,1,defaults);
  assert.ok(a.quantity*100<=3500);for(let i=0;i<100;i++)execute(a,{...buy,allocation:1},100,2+i,defaults);
- assert.ok(a.cash>=6400);assert.ok(a.quantity*100/equity(a,100)<.351);
+ assert.ok(a.cash>=6400);assert.ok(a.quantity*100/equity(a,100)<=.3500000001);
 });
 test('stop loss closes at observed price including gap and fees',()=>{
  const a=initial().agents[0];execute(a,buy,100,1,defaults);const trade=execute(a,hold,80,2,defaults);

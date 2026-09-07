@@ -53,8 +53,12 @@ export function execute(a: Agent, d: Decision, price: number, time: number, s: S
   const feeRate=s.feeBps/10000, slip=s.slippageBps/10000;
   let quantity=0,fee=0,realized=0; const fill=price*(d.action==='BUY'?1+slip:1-slip);
   if(d.action==='BUY'){
-    const target=Math.min(d.allocation,s.maxExposure)*before;
-    const value=Math.min(a.cash/(1+feeRate),Math.max(0,target-a.quantity*price));
+    const fraction=Math.min(d.allocation,s.maxExposure);
+    const target=fraction*before;
+    // Enforce the target against equity AFTER execution costs, including slippage.
+    const exposurePerDollar=1/(1+slip);
+    const denominator=exposurePerDollar+fraction*(1+feeRate-exposurePerDollar);
+    const value=Math.min(a.cash/(1+feeRate),Math.max(0,(target-a.quantity*price)/denominator));
     if(value<10) return null;
     quantity=value/fill;fee=value*feeRate;a.cash-=value+fee;a.quantity+=quantity;a.basis+=value+fee;
   }else if(d.action==='SELL'&&a.quantity>0){
@@ -76,7 +80,7 @@ export function backtest(candles: Candle[], settings: Settings): State {
   if(candles.length<50) throw new Error('Insufficient market history.');
   const state=initial({...settings,driver:'rules'});
   for(let i=30;i<candles.length;i++){
-    const past=candles.slice(0,i),bar=candles[i];
+    const past=candles.slice(Math.max(0,i-31),i),bar=candles[i];
     for(const a of state.agents){
       if(settings.mode==='single'&&a.id!==settings.selected) continue;
       const t=execute(a,ruleDecision(a,past),bar.open,bar.time,settings);if(t)state.trades.push(t);
