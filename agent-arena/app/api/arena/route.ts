@@ -1,9 +1,10 @@
 import { env } from 'cloudflare:workers';
 import { z } from 'zod';
-import { initial, identities, execute, strategyDecision, intervalMinutes, mark, backtest, type State } from '@/lib/engine';
+import { initial, strategyDecision, intervalMinutes, backtest } from '@/lib/engine';
 import { ensure, lock, save, unlock } from '@/lib/store';
-import { getCandles, getPrice } from '@/lib/market';
+import { getCandles, getPrice, getQuote } from '@/lib/market';
 import { checkConnection, encrypt, decrypt, aiDecision, providers } from '@/lib/ai';
+import {observe,forwardFill,finishObservation,closeAllPaper} from '@/lib/forward';
 export const dynamic='force-dynamic';
 const settingsSchema=z.object({mode:z.enum(['arena','single']),selected:z.enum(['atlas','nova','pulse','vex','sage']),driver:z.enum(['rules','ai']),capital:z.number().min(100).max(1000000),maxExposure:z.number().min(.01).max(.95),maxDrawdown:z.number().min(.01).max(.5),stopLoss:z.number().min(.005).max(.5),feeBps:z.number().min(0).max(200),slippageBps:z.number().min(0).max(200),model:z.string().max(150),strategyVersion:z.enum(['baseline','research-v2']).optional()}).strict();
 function owner(request:Request){const id=request.headers.get('oai-authenticated-user-id');if(!id)throw new Error('Sign in with ChatGPT to access your saved arena.');return id;}
@@ -32,7 +33,7 @@ export async function POST(request:Request){
       state.running=false;state.settings.driver='rules';state.settings.model='';connectionValue=null;
     }else if(body.action==='configure'){
       const settings=settingsSchema.parse(body.settings);
-      if(state.running||state.cycle>0)throw new Error('Start a new session before changing trading settings. Export the current session first.');
+      if(state.running||state.cycle>0||state.trades.length>0||state.forward?.observations)throw new Error('Start a new session before changing trading settings. Export the current session first.');
       if(settings.driver==='ai'){
         if(!connectionValue)throw new Error('Connect an AI provider first.');
         const c=await decrypt(connectionValue,secret(),id);if(!c.models.includes(settings.model))throw new Error('Choose a model supplied by your AI provider.');
@@ -40,10 +41,16 @@ export async function POST(request:Request){
       state=initial(settings);
     }else if(body.action==='reset'){
       if(state.running)throw new Error('Pause trading before starting a new session.');
+      if(state.agents.some(a=>a.quantity>0))throw new Error('Close all paper positions before clearing the session.');
       state=initial(state.settings);
     }else if(body.action==='start'){
       if(state.settings.driver==='ai'&&(!connectionValue||!state.settings.model))throw new Error('Connect AI and select a model first.');
+      if(state.agents.filter(a=>state.settings.mode==='arena'||a.id===state.settings.selected).every(a=>a.halted))throw new Error('All selected agents are halted. Review and export this session.');
       state.running=true;state.error=null;
+    }else if(body.action==='close-all'){
+      state.running=false;
+      try{const q=await getQuote();closeAllPaper(state,q,Date.now());}
+      catch(e){state.error='Session paused; positions remain open. '+(e instanceof Error?e.message:'Unable to fetch an executable quote.');}
     }else if(body.action==='pause'){state.running=false;
     }else if(body.action==='market'){
       state.candles=await getCandles(intervalMinutes(state.settings));state.price=await getPrice();
@@ -55,6 +62,12 @@ export async function POST(request:Request){
       if(Date.now()-state.lastTick<25000)throw new Error('Wait 30 seconds between cycle checks.');
       state.lastTick=Date.now();
       try{
+        // Protect existing positions before candle/model requests can fail or stall.
+        const riskQuote=await getQuote(),riskTime=Date.now(),initialBlock=observe(state,riskQuote,riskTime);
+        for(const a of state.agents.filter(a=>state.settings.mode==='arena'||a.id===state.settings.selected)){
+          forwardFill(state,a,{action:'HOLD',allocation:0,confidence:0,reason:'Pre-decision risk check.',source:'Risk manager'},riskQuote,riskTime,initialBlock);
+        }
+        finishObservation(state,riskQuote,riskTime);
         const duration=intervalMinutes(state.settings)*60000;
         const candles=await getCandles(intervalMinutes(state.settings)),last=candles.at(-1)!;
         if(Date.now()-(last.time+duration)>duration+120000 || last.time+duration>Date.now())throw new Error('Market candles are stale or incomplete. No orders were executed.');
@@ -64,29 +77,31 @@ export async function POST(request:Request){
           const c=state.settings.driver==='ai'&&connectionValue?await decrypt(connectionValue,secret(),id):null;
           // All agents receive one immutable completed-candle snapshot. Model calls run concurrently.
           const results=await Promise.allSettled(active.map(a=>c&&!a.halted?aiDecision(a,candles,state.settings,c):Promise.resolve({decision:strategyDecision(a,candles,state.settings),tokens:0})));
-          const price=await getPrice(),time=Date.now();
+          const quote=await getQuote(),time=Date.now(),entryBlock=observe(state,quote,time)||initialBlock;
+          state.forward!.lastBlock=entryBlock;
           for(let i=0;i<active.length;i++){
             const result=results[i];
             if(result.status==='rejected'){
               const decision={action:'HOLD' as const,allocation:0,confidence:0,reason:result.reason instanceof Error?result.reason.message:'AI request failed.',source:'Provider error'};
-              const t=execute(active[i],decision,price,time,state.settings);if(t)state.trades.push(t);
+              forwardFill(state,active[i],decision,quote,time,entryBlock);
             }else{
               state.tokens+=result.value.tokens;if(c&&!active[i].halted)state.aiCalls++;
-              const t=execute(active[i],result.value.decision,price,time,state.settings);if(t)state.trades.push(t);
+              forwardFill(state,active[i],result.value.decision,quote,time,entryBlock);
             }
           }
-          state.lastCandle=last.time;state.cycle++;mark(state,price,time);
+          state.lastCandle=last.time;state.cycle++;finishObservation(state,quote,time);
           state.trades=state.trades.slice(-1000);state.error=null;
           if(active.every(a=>a.halted))state.running=false;
         }else{
           // Risk checks still run between decision candles while the browser is active.
-          const price=await getPrice(),time=Date.now();
+          const quote=await getQuote(),time=Date.now(),entryBlock=observe(state,quote,time)||initialBlock;
+          state.forward!.lastBlock=entryBlock;
           for(const a of state.agents.filter(a=>state.settings.mode==='arena'||a.id===state.settings.selected)){
             const previous=a.decision;
-            const t=execute(a,{action:'HOLD',allocation:0,confidence:0,reason:'Between-candle risk check.',source:'Risk manager'},price,time,state.settings);
-            if(t)state.trades.push(t);else if(previous&&!a.halted)a.decision=previous;
+            const t=forwardFill(state,a,{action:'HOLD',allocation:0,confidence:0,reason:'Between-candle risk check.',source:'Risk manager'},quote,time,entryBlock);
+            if(!t&&previous&&!a.halted&&!state.forward?.dayBlocked.includes(a.id))a.decision=previous;
           }
-          mark(state,price,time);state.trades=state.trades.slice(-1000);
+          finishObservation(state,quote,time);
         }
       }catch(e){state.error=e instanceof Error?e.message:'Market cycle failed.';state.running=false;}
     }else throw new Error('Unknown action.');

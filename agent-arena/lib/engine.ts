@@ -6,7 +6,8 @@ export type Agent = { id: string; name: string; style: string; color: string; ca
 export type Trade = { id: string; agent: string; time: number; action: Action; price: number; quantity: number; fee: number; realized: number; reason: string; source: string };
 export type Point = { time: number; values: Record<string, number>; benchmark: number };
 export type Settings = { mode: 'arena' | 'single'; selected: string; driver: 'rules' | 'ai'; capital: number; maxExposure: number; maxDrawdown: number; stopLoss: number; feeBps: number; slippageBps: number; model: string; strategyVersion?: 'baseline' | 'research-v2' };
-export type State = { settings: Settings; agents: Agent[]; running: boolean; lastCandle: number; lastTick: number; startedAt: number; benchmarkPrice: number; history: Point[]; trades: Trade[]; error: string | null; candles: Candle[]; price: number; tokens: number; aiCalls: number; cycle: number };
+export type ForwardEvidence = { version: 'bid-ask-v1'; startedAt: number; lastObservation: number; observations: number; monitoredMs: number; gaps: number; maxGapMs: number; blockedEntries: number; quote: {bid:number;ask:number;receivedAt:number;spreadBps:number}|null; day: string; dayEquity: Record<string,number>; dayBlocked: string[]; lastBlock: string|null };
+export type State = { forward?: ForwardEvidence; settings: Settings; agents: Agent[]; running: boolean; lastCandle: number; lastTick: number; startedAt: number; benchmarkPrice: number; history: Point[]; trades: Trade[]; error: string | null; candles: Candle[]; price: number; tokens: number; aiCalls: number; cycle: number };
 export const identities = [
   { id: 'atlas', name: 'Atlas', style: 'Trend following: favor sustained direction and moving-average alignment.', color: '#69a8ff' },
   { id: 'nova', name: 'Nova', style: 'Mean reversion: look for oversold conditions; exit on recovery.', color: '#d69cff' },
@@ -45,8 +46,8 @@ export function validateDecision(d: unknown, source: string): Decision {
   if(!v || !['BUY','SELL','HOLD'].includes(String(v.action)) || typeof v.allocation!=='number' || !Number.isFinite(v.allocation) || v.allocation<0 || v.allocation>1 || typeof v.confidence!=='number' || !Number.isFinite(v.confidence) || v.confidence<0 || v.confidence>1 || typeof v.reason!=='string' || !v.reason.trim()) throw new Error('Model returned an invalid trading decision. No order was executed.');
   return {action:v.action as Action,allocation:v.allocation,confidence:v.confidence,reason:v.reason.slice(0,1200),source};
 }
-export function execute(a: Agent, d: Decision, price: number, time: number, s: Settings): Trade | null {
-  if(!Number.isFinite(price)||price<=0) throw new Error('Invalid execution price.');
+export function execute(a: Agent, d: Decision, price: number, time: number, s: Settings, askPrice=price): Trade | null {
+  if(!Number.isFinite(price)||price<=0||!Number.isFinite(askPrice)||askPrice<price) throw new Error('Invalid execution price.');
   d=validateDecision(d,d.source);
   const before=equity(a,price); a.peak=Math.max(a.peak,before); a.drawdown=Math.max(a.drawdown,1-before/a.peak);
   if(1-before/a.peak>=s.maxDrawdown){ a.halted=true; d={...d,action:a.quantity>0?'SELL':'HOLD',reason:'Maximum drawdown reached. Liquidate paper position and halt.',source:'Risk manager'}; }
@@ -54,12 +55,12 @@ export function execute(a: Agent, d: Decision, price: number, time: number, s: S
   if(a.halted && d.action==='BUY') d={...d,action:'HOLD',reason:'Agent halted by drawdown limit.',source:'Risk manager'};
   a.decision=d;
   const feeRate=s.feeBps/10000, slip=s.slippageBps/10000;
-  let quantity=0,fee=0,realized=0; const fill=price*(d.action==='BUY'?1+slip:1-slip);
+  let quantity=0,fee=0,realized=0; const fill=d.action==='BUY'?askPrice*(1+slip):price*(1-slip);
   if(d.action==='BUY'){
     const fraction=Math.min(d.allocation,s.maxExposure);
     const target=fraction*before;
     // Enforce the target against equity AFTER execution costs, including slippage.
-    const exposurePerDollar=1/(1+slip);
+    const exposurePerDollar=price/fill;
     const denominator=exposurePerDollar+fraction*(1+feeRate-exposurePerDollar);
     const value=Math.min(a.cash/(1+feeRate),Math.max(0,(target-a.quantity*price)/denominator));
     if(value<10) return null;

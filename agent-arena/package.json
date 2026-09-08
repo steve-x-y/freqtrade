@@ -13,7 +13,7 @@
     "test": "npm run test:engine",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
-    "test:engine": "node --test tests/engine.test.mjs tests/ai.test.mjs tests/research.test.mjs tests/report.test.mjs tests/replay.test.mjs",
+    "test:engine": "node --test tests/engine.test.mjs tests/ai.test.mjs tests/research.test.mjs tests/report.test.mjs tests/replay.test.mjs tests/forward.test.mjs tests/route-controls.test.mjs",
     "typecheck": "tsc --noEmit",
     "test:runtime": "node --test --test-force-exit tests/runtime.test.mjs",
     "validate:history": "node research/run-validation.mjs",

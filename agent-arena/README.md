@@ -112,3 +112,22 @@ Reproduction downloads pinned public blobs with checksum verification, without c
 ### V3 execution audit
 
 `npm run research:replay` reproduces 48 OHLC execution scenarios from the pinned V2 datasets. `/research/v3` displays every result. This is exploratory data reuse, not an untouched holdout. Both daily path orders check stop and drawdown barriers, open gaps fill at the open, and all terminal exits include costs. Three fixed allocation policies are compared without changing V2 signals or automatically promoting a winner. Continuous monitoring assumed by replay differs from tab-dependent forward paper operation. No new live or AI performance claim.
+
+### Forward execution safeguards (bid-ask-v1)
+
+Forward paper fills now buy at Kraken ask and sell at bid, plus configured slippage and fees. Equity and risk use bid. Public quotes are checked for response age and validity; receipt time is local, not an exchange book timestamp. Top-of-book data does not model order depth, partial fills, or queue priority.
+
+New entries are blocked when spread exceeds 25 bps or on the first check after a monitoring gap over 90 seconds. Protective paper exits still run. A fixed 2% per-agent daily equity loss threshold closes the position and blocks re-entry until the next UTC day. The daily reference starts at the first observation of that UTC day using the last marked equity; it is not an exact midnight valuation. Gaps and fees can exceed the loss threshold. Limits persist in the saved session across pause/resume.
+
+`Close all paper` pauses and closes all paper holdings, including inactive agents. A feed failure persists the paused state and explicitly leaves holdings open. Reset refuses to discard open holdings. Position risk checks precede candle/model requests, so a later candle failure cannot suppress a risk exit already observed on a valid quote.
+
+The Readiness tab exposes quote observations, monitored intervals, gaps, blocked entries, daily blocks, and strategy rules. Coverage excludes intervals over 90 seconds and is not proof of continuous uptime. Existing session history is retained; evidence starts at the upgrade boundary. These safeguards change forward execution and were not part of the V2/V3 historical results.
+
+Validation: 37 deterministic/fixture tests pass, including actual route handlers with in-memory storage and mocked market data. TypeScript and production build are checked separately. The native Worker/D1 integration suite, authenticated broker operations, real model inference, and browser tests are not claimed as verified in this update.
+
+Still required before real-money readiness: identify the intended exchange/account, deploy independently monitored continuous execution, implement and verify authenticated order/partial-fill/reconciliation workflows and exchange-held protective orders, and collect prospective strategy evidence net of all operating costs. No live switch or broker secrets are accepted by this app.
+
+Primary references checked 8 September 2026:
+- Kraken spot ticker schema: https://docs.kraken.com/api-reference/market-data/get-ticker-information
+- Exchange stop-loss behavior and limitations: https://www.freqtrade.io/en/stable/stoploss/
+- Separation of paper and live databases: https://www.freqtrade.io/en/stable/configuration/

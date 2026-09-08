@@ -11,7 +11,7 @@ test('Worker routes: auth, origin, owner isolation, market cycle, duplicate prev
  const mf=new Miniflare({modules:true,scriptPath:root+'/dist/server/index.js',modulesRoot:root+'/dist/server',modulesRules:[{type:'ESModule',include:['**/*.js','**/*.mjs']}],compatibilityDate:'2026-05-15',compatibilityFlags:['nodejs_compat'],d1Databases:{DB:'arena-runtime-test'},bindings:{KEY_ENCRYPTION_SECRET:'test-only-encryption-key-at-least-32-chars'},outboundService:async(request)=>{
   if(feedFails)return new Response('unavailable',{status:503});
   const url=new URL(request.url);assert.equal(url.hostname,'api.kraken.com');
-  return Response.json({error:[],result:url.pathname.endsWith('OHLC')?{XXBTZUSD:bars,last:current}:{XXBTZUSD:{a:['201'],b:['200']}}});
+  return Response.json({error:[],result:url.pathname.endsWith('OHLC')?{XXBTZUSD:bars,last:current}:{XXBTZUSD:{a:['200.01'],b:['200']}}});
  }});
  try{
   const db=await mf.getD1Database('DB');await db.exec((await readFile(root+'/drizzle/0000_wakeful_malice.sql','utf8')).replace(/\n/g,' '));
