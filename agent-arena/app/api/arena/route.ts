@@ -1,10 +1,11 @@
 import { env } from 'cloudflare:workers';
 import { z } from 'zod';
-import { initial, defaults, strategyDecision, intervalMinutes, backtest } from '@/lib/engine';
+import { initial, strategyDecision, intervalMinutes, backtest } from '@/lib/engine';
 import { ensure, lock, save, unlock } from '@/lib/store';
 import { getCandles, getPrice, getQuote } from '@/lib/market';
 import { checkConnection, encrypt, decrypt, aiDecision, providers } from '@/lib/ai';
 import {observe,forwardFill,finishObservation,closeAllPaper} from '@/lib/forward';
+import {startDemo50} from '@/lib/demo-session';
 export const dynamic='force-dynamic';
 const settingsSchema=z.object({mode:z.enum(['arena','single']),selected:z.enum(['atlas','nova','pulse','vex','sage']),driver:z.enum(['rules','ai']),capital:z.number().min(50).max(1000000),maxExposure:z.number().min(.01).max(.95),maxDrawdown:z.number().min(.01).max(.5),stopLoss:z.number().min(.005).max(.5),feeBps:z.number().min(0).max(200),slippageBps:z.number().min(0).max(200),model:z.string().max(150),strategyVersion:z.enum(['baseline','research-v2']).optional()}).strict();
 function owner(request:Request){const id=request.headers.get('oai-authenticated-user-id');if(!id)throw new Error('Sign in with ChatGPT to access your saved arena.');return id;}
@@ -38,15 +39,22 @@ export async function POST(request:Request){
         if(!connectionValue)throw new Error('Connect an AI provider first.');
         const c=await decrypt(connectionValue,secret(),id);if(!c.models.includes(settings.model))throw new Error('Choose a model supplied by your AI provider.');
       }
-      state=initial(settings);
+      state={...initial(settings),archives:state.archives};
     }else if(body.action==='reset'){
       if(state.running)throw new Error('Pause trading before starting a new session.');
       if(state.agents.some(a=>a.quantity>0))throw new Error('Close all paper positions before clearing the session.');
-      state=initial(state.settings);
+      state={...initial(state.settings),archives:state.archives};
     }else if(body.action==='demo50'){
-      if(state.running||state.cycle>0||state.trades.length>0||state.forward?.observations)throw new Error('A session already exists. Close positions and export it before starting a new session.');
-      state=initial({...defaults,mode:'single',selected:'atlas',capital:50,driver:'rules',strategyVersion:'baseline',feeBps:80});
-      state.running=true;
+      state=startDemo50(state);
+    }else if(body.action==='demo50-new'){
+      if((state.archives?.length??0)>=20)throw new Error('Archive limit reached. Export sessions before clearing this workspace.');
+      // Close first; never discard holdings if a quote is unavailable.
+      if(state.agents.some(a=>a.quantity>0)){
+        state.running=false;
+        try{const q=await getQuote();closeAllPaper(state,q,Date.now());}
+        catch(e){state.error='Could not start $50: old positions remain open. '+(e instanceof Error?e.message:'Market unavailable.');await save(id,token,state,connectionValue);token='';return json({state,connection:await summary(connectionValue,id)});}
+      }
+      state=startDemo50(state,true);
     }else if(body.action==='start'){
       if(state.settings.driver==='ai'&&(!connectionValue||!state.settings.model))throw new Error('Connect AI and select a model first.');
       if(state.agents.filter(a=>state.settings.mode==='arena'||a.id===state.settings.selected).every(a=>a.halted))throw new Error('All selected agents are halted. Review and export this session.');
