@@ -108,3 +108,7 @@ npm run build
 ```
 
 Reproduction downloads pinned public blobs with checksum verification, without credentials. `EXPERIMENT-V2.md` and `v2-selection.json` preserve the pre-evaluation protocol and source hashes. The five candidate rules were not re-tuned after final evaluation. 20 tests pass: 19 unit/adapter checks plus a server-rendered report consistency check. Browser QA, paid model inference and live broker orders are unverified/not executed; direct outbound market-data access was canceled by the environment's network control and not bypassed.
+
+### V3 execution audit
+
+`npm run research:replay` reproduces 48 OHLC execution scenarios from the pinned V2 datasets. `/research/v3` displays every result. This is exploratory data reuse, not an untouched holdout. Both daily path orders check stop and drawdown barriers, open gaps fill at the open, and all terminal exits include costs. Three fixed allocation policies are compared without changing V2 signals or automatically promoting a winner. Continuous monitoring assumed by replay differs from tab-dependent forward paper operation. No new live or AI performance claim.

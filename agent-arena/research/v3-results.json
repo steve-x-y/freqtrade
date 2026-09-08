@@ -1,0 +1,2888 @@
+{
+  "generatedAt": "2026-09-08T05:34:40.889Z",
+  "exploratory": true,
+  "liveTested": false,
+  "protocolSha256": "4c0f249a2e996847fbd8097a10eed87d61fe891b46c7a100ad276d0554f3d08b",
+  "rows": [
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.12449341413773185,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.1490235034417624,
+          "drawdown": 0.09774256271896453,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0607748240976016,
+          "drawdown": 0.06402031498638627,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.23686299966222868,
+          "drawdown": 0.055414669542801054,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.06686011057630159,
+          "drawdown": 0.07825988489881408,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.10894563291076498,
+          "drawdown": 0.057215532686739845,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.09221973867754532,
+      "closed": 22,
+      "wins": 12,
+      "winrate": 0.5454545454545454,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03929121846597594,
+          "drawdown": 0.10393152547157158,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": 0.04714256015089524,
+          "drawdown": 0.06807785352481643,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.2155061636169875,
+          "drawdown": 0.058870473364069476,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.05611154265135365,
+          "drawdown": 0.08347282873478035,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.10304720850251425,
+          "drawdown": 0.059085190551983024,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.12449341413773185,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.1490235034417624,
+          "drawdown": 0.09774256271896453,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0607748240976016,
+          "drawdown": 0.06402031498638627,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.23686299966222868,
+          "drawdown": 0.053562495783221364,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.06686011057630159,
+          "drawdown": 0.07825988489881408,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.10894563291076498,
+          "drawdown": 0.057215532686739845,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.09221973867754532,
+      "closed": 22,
+      "wins": 12,
+      "winrate": 0.5454545454545454,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03929121846597594,
+          "drawdown": 0.10393152547157158,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": 0.04714256015089524,
+          "drawdown": 0.06807785352481643,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.2155061636169875,
+          "drawdown": 0.058870473364069476,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.05611154265135365,
+          "drawdown": 0.08347282873478035,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.10304720850251425,
+          "drawdown": 0.059085190551983024,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.041567348843812454,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.04243187477311561,
+          "drawdown": 0.03030733349264203,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.01761354362410028,
+          "drawdown": 0.018672587280382347,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.06563301384578901,
+          "drawdown": 0.01668095914133083,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.019929899850671173,
+          "drawdown": 0.023659532473154,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06222841212538621,
+          "drawdown": 0.03427202091034143,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.03802190962006571,
+      "closed": 22,
+      "wins": 13,
+      "winrate": 0.5909090909090909,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.040133521668487715,
+          "drawdown": 0.031576287500391875,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.013820837930226038,
+          "drawdown": 0.01990537635267331,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.06025087906686322,
+          "drawdown": 0.017430646041479148,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.016940655497016177,
+          "drawdown": 0.02524998473740303,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.058963653937735394,
+          "drawdown": 0.03427202091034143,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.041567348843812454,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.04243187477311561,
+          "drawdown": 0.03030733349264203,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.01761354362410028,
+          "drawdown": 0.018672587280382347,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.06563301384578901,
+          "drawdown": 0.015847683467950402,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.019929899850671173,
+          "drawdown": 0.023659532473154,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06222841212538621,
+          "drawdown": 0.03427202091034143,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.03802190962006571,
+      "closed": 22,
+      "wins": 13,
+      "winrate": 0.5909090909090909,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.040133521668487715,
+          "drawdown": 0.031576287500391875,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.013820837930226038,
+          "drawdown": 0.01990537635267331,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.06025087906686322,
+          "drawdown": 0.017430646041479148,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.016940655497016177,
+          "drawdown": 0.02524998473740303,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.058963653937735394,
+          "drawdown": 0.03427202091034143,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.035470099247239296,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03621158634185928,
+          "drawdown": 0.026004510043603046,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.015047398504665521,
+          "drawdown": 0.01595920731518974,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.05592443851394058,
+          "drawdown": 0.01428430221833743,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.017053507859057238,
+          "drawdown": 0.02026635876997629,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.05311356501667386,
+          "drawdown": 0.0295339766800099,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.030341596047364795,
+      "closed": 22,
+      "wins": 13,
+      "winrate": 0.5909090909090909,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03202303571945153,
+          "drawdown": 0.025377949102581288,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.011050800732065102,
+          "drawdown": 0.015914293846032823,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.047992303166018324,
+          "drawdown": 0.013950275359215003,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.01357632824204491,
+          "drawdown": 0.02024602096192707,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0470655123772441,
+          "drawdown": 0.027708510501392114,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.035470099247239296,
+      "closed": 22,
+      "wins": 14,
+      "winrate": 0.6363636363636364,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03621158634185928,
+          "drawdown": 0.026004510043603046,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.015047398504665521,
+          "drawdown": 0.01595920731518974,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.05592443851394058,
+          "drawdown": 0.013556451107290535,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.017053507859057238,
+          "drawdown": 0.02026635876997629,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.05311356501667386,
+          "drawdown": 0.0295339766800099,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": 0.030341596047364795,
+      "closed": 22,
+      "wins": 13,
+      "winrate": 0.5909090909090909,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.03202303571945153,
+          "drawdown": 0.025377949102581288,
+          "closed": 3,
+          "wins": 2,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.011050800732065102,
+          "drawdown": 0.015914293846032823,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.047992303166018324,
+          "drawdown": 0.013950275359215003,
+          "closed": 6,
+          "wins": 4,
+          "winrate": 0.6666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.01357632824204491,
+          "drawdown": 0.02024602096192707,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0470655123772441,
+          "drawdown": 0.027708510501392114,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.0468294247146247,
+      "closed": 21,
+      "wins": 9,
+      "winrate": 0.42857142857142855,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.1271444067081775,
+          "drawdown": 0.10326592446628369,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.04301675955251827,
+          "drawdown": 0.10266303604402516,
+          "closed": 8,
+          "wins": 3,
+          "winrate": 0.375,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.029718083497981995,
+          "drawdown": 0.10265804610402596,
+          "closed": 6,
+          "wins": 1,
+          "winrate": 0.16666666666666666,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.004501763558210969,
+          "drawdown": 0.10291546147385888,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.1157996293612713,
+          "drawdown": 0.0907203993411142,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.041257990494197115,
+      "closed": 19,
+      "wins": 8,
+      "winrate": 0.42105263157894735,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.12364344267462957,
+          "drawdown": 0.10480278487308714,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.048400919274877774,
+          "drawdown": 0.10388931725637773,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.021772764529032207,
+          "drawdown": 0.10455529799887708,
+          "closed": 6,
+          "wins": 1,
+          "winrate": 0.16666666666666666,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.00014391408152669705,
+          "drawdown": 0.10428740297250394,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.10913075046067489,
+          "drawdown": 0.0907203993411142,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.0468294247146247,
+      "closed": 21,
+      "wins": 9,
+      "winrate": 0.42857142857142855,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.1271444067081775,
+          "drawdown": 0.10326592446628369,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.04301675955251827,
+          "drawdown": 0.10266303604402516,
+          "closed": 8,
+          "wins": 3,
+          "winrate": 0.375,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.029718083497981995,
+          "drawdown": 0.10265804610402596,
+          "closed": 6,
+          "wins": 1,
+          "winrate": 0.16666666666666666,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.004501763558210969,
+          "drawdown": 0.10291546147385888,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.1157996293612713,
+          "drawdown": 0.0907203993411142,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.03919883786647982,
+      "closed": 19,
+      "wins": 8,
+      "winrate": 0.42105263157894735,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.12364344267462957,
+          "drawdown": 0.10480278487308714,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.048400919274877774,
+          "drawdown": 0.10388931725637773,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.011477001390445718,
+          "drawdown": 0.11357813250333282,
+          "closed": 6,
+          "wins": 1,
+          "winrate": 0.16666666666666666,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.00014391408152669705,
+          "drawdown": 0.10428740297250394,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.10913075046067489,
+          "drawdown": 0.0907203993411142,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.0394139716880856,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.09792827496411771,
+          "drawdown": 0.03811856411653647,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0022049632565821486,
+          "drawdown": 0.03746243006840311,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.011055516466170312,
+          "drawdown": 0.0628727840075286,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.020494223111656273,
+          "drawdown": 0.03909854374244415,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06538688064190157,
+          "drawdown": 0.05453534333539001,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.03037040975761136,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.09354381873104756,
+          "drawdown": 0.04021371744318869,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.008336792306130159,
+          "drawdown": 0.0421117505492401,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.011752670357226824,
+          "drawdown": 0.07172148027224268,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.01668120885894031,
+          "drawdown": 0.03992457885505518,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06171648386142592,
+          "drawdown": 0.05453534333539012,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.0394139716880856,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.09792827496411771,
+          "drawdown": 0.03811856411653647,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0022049632565821486,
+          "drawdown": 0.03746243006840311,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.011055516466170312,
+          "drawdown": 0.0628727840075286,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.020494223111656273,
+          "drawdown": 0.03909854374244415,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06538688064190157,
+          "drawdown": 0.05453534333539001,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.03037040975761136,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.09354381873104756,
+          "drawdown": 0.04021371744318869,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.008336792306130159,
+          "drawdown": 0.0421117505492401,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.011752670357226824,
+          "drawdown": 0.07172148027224268,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.01668120885894031,
+          "drawdown": 0.03992457885505518,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.06171648386142592,
+          "drawdown": 0.05453534333539012,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.03363917558661696,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.08336741727057051,
+          "drawdown": 0.0327570564047337,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0019319759303062511,
+          "drawdown": 0.03204754032923629,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.009680666883872258,
+          "drawdown": 0.05400633734085447,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.017529620293831538,
+          "drawdown": 0.03358414465136794,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.05568619755450421,
+          "drawdown": 0.047030596908121725,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.024242106726989586,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.07440368424506594,
+          "drawdown": 0.032389512422695166,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.0065975042929953265,
+          "drawdown": 0.03372378905130158,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.009070071628974108,
+          "drawdown": 0.05776789503420965,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.013364412986858865,
+          "drawdown": 0.032134762506472514,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.04911001232499257,
+          "drawdown": 0.044136224777233224,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.03363917558661696,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.08336741727057051,
+          "drawdown": 0.0327570564047337,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.0019319759303062511,
+          "drawdown": 0.03204754032923629,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.009680666883872258,
+          "drawdown": 0.05400633734085447,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.017529620293831538,
+          "drawdown": 0.03358414465136794,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.05568619755450421,
+          "drawdown": 0.047030596908121725,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "BTC",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-05-04",
+      "return": 0.024242106726989586,
+      "closed": 46,
+      "wins": 18,
+      "winrate": 0.391304347826087,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.07440368424506594,
+          "drawdown": 0.032389512422695166,
+          "closed": 5,
+          "wins": 3,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.0065975042929953265,
+          "drawdown": 0.03372378905130158,
+          "closed": 14,
+          "wins": 7,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.009070071628974108,
+          "drawdown": 0.05776789503420965,
+          "closed": 18,
+          "wins": 3,
+          "winrate": 0.16666666666666666,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.013364412986858865,
+          "drawdown": 0.032134762506472514,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.04911001232499257,
+          "drawdown": 0.044136224777233224,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.0430884020551807,
+      "closed": 27,
+      "wins": 10,
+      "winrate": 0.37037037037037035,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.04897196706035445,
+          "drawdown": 0.10273451188946581,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.07015605940407399,
+          "drawdown": 0.09156740367671612,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.034547933653551244,
+          "drawdown": 0.10261675024513495,
+          "closed": 8,
+          "wins": 3,
+          "winrate": 0.375,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.06863559069138025,
+          "drawdown": 0.10261352168077265,
+          "closed": 4,
+          "wins": 1,
+          "winrate": 0.25,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.006869540533456453,
+          "drawdown": 0.09801838744593949,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.06770224201899,
+      "closed": 25,
+      "wins": 8,
+      "winrate": 0.32,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.05562688318705644,
+          "drawdown": 0.1040213031481857,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.08200424714642995,
+          "drawdown": 0.09541004207090531,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.04806002422468569,
+          "drawdown": 0.10389975305465049,
+          "closed": 7,
+          "wins": 3,
+          "winrate": 0.42857142857142855,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.07256149178233118,
+          "drawdown": 0.10387514093238748,
+          "closed": 4,
+          "wins": 1,
+          "winrate": 0.25,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": -0.08025856375444673,
+          "drawdown": 0.10196939068390809,
+          "closed": 5,
+          "wins": 0,
+          "winrate": 0,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.0430884020551807,
+      "closed": 27,
+      "wins": 10,
+      "winrate": 0.37037037037037035,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.04897196706035445,
+          "drawdown": 0.10273451188946581,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.07015605940407399,
+          "drawdown": 0.09156740367671612,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.034547933653551244,
+          "drawdown": 0.10261675024513495,
+          "closed": 8,
+          "wins": 3,
+          "winrate": 0.375,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.06863559069138025,
+          "drawdown": 0.10261352168077265,
+          "closed": 4,
+          "wins": 1,
+          "winrate": 0.25,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.006869540533456453,
+          "drawdown": 0.09801838744593949,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.06782020514481854,
+      "closed": 25,
+      "wins": 8,
+      "winrate": 0.32,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.05562688318705644,
+          "drawdown": 0.1040213031481857,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.08200424714642995,
+          "drawdown": 0.09541004207090531,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": -0.04806002422468569,
+          "drawdown": 0.10389975305465049,
+          "closed": 7,
+          "wins": 3,
+          "winrate": 0.42857142857142855,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.07256149178233118,
+          "drawdown": 0.10387514093238748,
+          "closed": 4,
+          "wins": 1,
+          "winrate": 0.25,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": -0.08084837938358946,
+          "drawdown": 0.1025452835032914,
+          "closed": 5,
+          "wins": 0,
+          "winrate": 0,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.006899086876310845,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.0011018734127465901,
+          "drawdown": 0.038536330877047664,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.02010163465396586,
+          "drawdown": 0.02679219896939722,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.01584149583083838,
+          "drawdown": 0.033915299006616495,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.03587296344894819,
+          "drawdown": 0.04678772513094143,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.004535794477774857,
+          "drawdown": 0.05718052670314411,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.011306311815725856,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.0025697681775924686,
+          "drawdown": 0.04007160784637165,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.023705527505014867,
+          "drawdown": 0.02797284527041377,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.006872510046811442,
+          "drawdown": 0.038486507494524314,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.038241820885732025,
+          "drawdown": 0.04836226208908301,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0011130474428986403,
+          "drawdown": 0.05871438698203291,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.006899086876310845,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.0011018734127465901,
+          "drawdown": 0.038536330877047664,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.02010163465396586,
+          "drawdown": 0.02679219896939722,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.01584149583083838,
+          "drawdown": 0.033915299006616495,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.03587296344894819,
+          "drawdown": 0.04678772513094143,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.004535794477774857,
+          "drawdown": 0.05718052670314411,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.011306311815725856,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.0025697681775924686,
+          "drawdown": 0.04007160784637165,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.023705527505014867,
+          "drawdown": 0.02797284527041377,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.006872510046811442,
+          "drawdown": 0.038486507494524314,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.038241820885732025,
+          "drawdown": 0.04836226208908301,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0011130474428986403,
+          "drawdown": 0.05871438698203291,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.005863660215352939,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.0009811422637793221,
+          "drawdown": 0.03305923751727957,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.01716187496889432,
+          "drawdown": 0.022902671413657094,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.013564064200678017,
+          "drawdown": 0.029045126212292827,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.030675894429080808,
+          "drawdown": 0.040089100509929865,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.003974261856753092,
+          "drawdown": 0.04900969930932619,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.008992946260023383,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.002000458881562417,
+          "drawdown": 0.032197153006789714,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.018933881729592428,
+          "drawdown": 0.02236836452394997,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.005552852237102446,
+          "drawdown": 0.030857302373715867,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.030600454557124568,
+          "drawdown": 0.038798147926310755,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0010172116310600554,
+          "drawdown": 0.04712406962961324,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.005863660215352939,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.0009811422637793221,
+          "drawdown": 0.03305923751727957,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.01716187496889432,
+          "drawdown": 0.022902671413657094,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.013564064200678017,
+          "drawdown": 0.029045126212292827,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.030675894429080808,
+          "drawdown": 0.040089100509929865,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.003974261856753092,
+          "drawdown": 0.04900969930932619,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2022–2023",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2022-01-01",
+      "end": "2023-12-31",
+      "return": -0.008992946260023383,
+      "closed": 31,
+      "wins": 12,
+      "winrate": 0.3870967741935484,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": -0.002000458881562417,
+          "drawdown": 0.032197153006789714,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": -0.018933881729592428,
+          "drawdown": 0.02236836452394997,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.005552852237102446,
+          "drawdown": 0.030857302373715867,
+          "closed": 9,
+          "wins": 4,
+          "winrate": 0.4444444444444444,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": -0.030600454557124568,
+          "drawdown": 0.038798147926310755,
+          "closed": 5,
+          "wins": 1,
+          "winrate": 0.2,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.0010172116310600554,
+          "drawdown": 0.04712406962961324,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03722679371316133,
+      "closed": 13,
+      "wins": 7,
+      "winrate": 0.5384615384615384,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.142494109686089,
+          "drawdown": 0.10332506228705407,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.006072336000152112,
+          "drawdown": 0.10254726407938053,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.024135706306098292,
+          "drawdown": 0.10300055760853832,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.003725093243223121,
+          "drawdown": 0.1029117813079099,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.021851395330548362,
+          "drawdown": 0.10149241232157047,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03192740186778727,
+      "closed": 13,
+      "wins": 6,
+      "winrate": 0.46153846153846156,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.13890993137597607,
+          "drawdown": 0.1048897514376711,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.014448387069500912,
+          "drawdown": 0.10379952112186164,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.015463749602268928,
+          "drawdown": 0.10441254316867676,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.0006274483113022367,
+          "drawdown": 0.10428199101471591,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.02033916374149447,
+          "drawdown": 0.1021947033363585,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03722679371316133,
+      "closed": 13,
+      "wins": 7,
+      "winrate": 0.5384615384615384,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.142494109686089,
+          "drawdown": 0.10332506228705407,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.006072336000152112,
+          "drawdown": 0.10254726407938053,
+          "closed": 6,
+          "wins": 3,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.024135706306098292,
+          "drawdown": 0.10300055760853832,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": 0.003725093243223121,
+          "drawdown": 0.1029117813079099,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.021851395330548362,
+          "drawdown": 0.10149241232157047,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "reference",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03192740186778727,
+      "closed": 13,
+      "wins": 6,
+      "winrate": 0.46153846153846156,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.13890993137597607,
+          "drawdown": 0.1048897514376711,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        },
+        {
+          "id": "nova",
+          "return": -0.014448387069500912,
+          "drawdown": 0.10379952112186164,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "pulse",
+          "return": 0.015463749602268928,
+          "drawdown": 0.10441254316867676,
+          "closed": 3,
+          "wins": 1,
+          "winrate": 0.3333333333333333,
+          "halted": true
+        },
+        {
+          "id": "vex",
+          "return": -0.0006274483113022367,
+          "drawdown": 0.10428199101471591,
+          "closed": 2,
+          "wins": 1,
+          "winrate": 0.5,
+          "halted": true
+        },
+        {
+          "id": "sage",
+          "return": 0.02033916374149447,
+          "drawdown": 0.1021947033363585,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "halted": true
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03626578634697233,
+      "closed": 39,
+      "wins": 17,
+      "winrate": 0.4358974358974359,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.04318162772145007,
+          "drawdown": 0.07943733192075075,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.021172462547387028,
+          "drawdown": 0.029631259838858726,
+          "closed": 10,
+          "wins": 6,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.04499008590196607,
+          "drawdown": 0.03951950958284278,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.06046508294199371,
+          "drawdown": 0.0342236328850829,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.01151967262206477,
+          "drawdown": 0.09399277855594479,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.02573986463134781,
+      "closed": 40,
+      "wins": 16,
+      "winrate": 0.4,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.021848592674539535,
+          "drawdown": 0.09739186401278488,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.013626849286798137,
+          "drawdown": 0.03163933341984704,
+          "closed": 10,
+          "wins": 5,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.030354383152749964,
+          "drawdown": 0.04746246040632096,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.056357644155428765,
+          "drawdown": 0.035043427751733414,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.006511853887222641,
+          "drawdown": 0.0950425936696373,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.03626578634697233,
+      "closed": 39,
+      "wins": 17,
+      "winrate": 0.4358974358974359,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.04318162772145007,
+          "drawdown": 0.07943733192075075,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.021172462547387028,
+          "drawdown": 0.029631259838858726,
+          "closed": 10,
+          "wins": 6,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.04499008590196607,
+          "drawdown": 0.03951950958284278,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.06046508294199371,
+          "drawdown": 0.0342236328850829,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.01151967262206477,
+          "drawdown": 0.09399277855594479,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "fixed10",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.02573986463134781,
+      "closed": 40,
+      "wins": 16,
+      "winrate": 0.4,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.021848592674539535,
+          "drawdown": 0.09739186401278488,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.013626849286798137,
+          "drawdown": 0.03163933341984704,
+          "closed": 10,
+          "wins": 5,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.030354383152749964,
+          "drawdown": 0.04746246040632096,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.056357644155428765,
+          "drawdown": 0.035043427751733414,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.006511853887222641,
+          "drawdown": 0.0950425936696373,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.031005568982617904,
+      "closed": 39,
+      "wins": 17,
+      "winrate": 0.4358974358974359,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.036948613906993666,
+          "drawdown": 0.06848948347420514,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.018133798179930993,
+          "drawdown": 0.025343113661485783,
+          "closed": 10,
+          "wins": 6,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.038480696730545105,
+          "drawdown": 0.033910266011275,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.05153379452581075,
+          "drawdown": 0.02940826484522041,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.009930941569809004,
+          "drawdown": 0.08155793311266979,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "high-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.020650829062365084,
+      "closed": 40,
+      "wins": 16,
+      "winrate": 0.4,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.017660470920814353,
+          "drawdown": 0.0788500433479532,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.010967357397347,
+          "drawdown": 0.025322184191246655,
+          "closed": 10,
+          "wins": 5,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.024403854742081066,
+          "drawdown": 0.038151352569516406,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.04489748714405417,
+          "drawdown": 0.028220023216022905,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.005324975107528829,
+          "drawdown": 0.07751097373973004,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 80,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.031005568982617904,
+      "closed": 39,
+      "wins": 17,
+      "winrate": 0.4358974358974359,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.036948613906993666,
+          "drawdown": 0.06848948347420514,
+          "closed": 6,
+          "wins": 2,
+          "winrate": 0.3333333333333333,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.018133798179930993,
+          "drawdown": 0.025343113661485783,
+          "closed": 10,
+          "wins": 6,
+          "winrate": 0.6,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.038480696730545105,
+          "drawdown": 0.033910266011275,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.05153379452581075,
+          "drawdown": 0.02940826484522041,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.009930941569809004,
+          "drawdown": 0.08155793311266979,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    },
+    {
+      "asset": "ETH",
+      "period": "2024–end",
+      "policy": "risk1",
+      "path": "low-first",
+      "fee": 120,
+      "start": "2024-01-01",
+      "end": "2026-04-18",
+      "return": 0.020650829062365084,
+      "closed": 40,
+      "wins": 16,
+      "winrate": 0.4,
+      "agents": [
+        {
+          "id": "atlas",
+          "return": 0.017660470920814353,
+          "drawdown": 0.0788500433479532,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        },
+        {
+          "id": "nova",
+          "return": 0.010967357397347,
+          "drawdown": 0.025322184191246655,
+          "closed": 10,
+          "wins": 5,
+          "winrate": 0.5,
+          "halted": false
+        },
+        {
+          "id": "pulse",
+          "return": 0.024403854742081066,
+          "drawdown": 0.038151352569516406,
+          "closed": 11,
+          "wins": 3,
+          "winrate": 0.2727272727272727,
+          "halted": false
+        },
+        {
+          "id": "vex",
+          "return": 0.04489748714405417,
+          "drawdown": 0.028220023216022905,
+          "closed": 5,
+          "wins": 4,
+          "winrate": 0.8,
+          "halted": false
+        },
+        {
+          "id": "sage",
+          "return": 0.005324975107528829,
+          "drawdown": 0.07751097373973004,
+          "closed": 7,
+          "wins": 2,
+          "winrate": 0.2857142857142857,
+          "halted": false
+        }
+      ]
+    }
+  ]
+}
