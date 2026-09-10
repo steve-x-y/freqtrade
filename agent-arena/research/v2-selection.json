@@ -1,0 +1,685 @@
+{
+  "generatedAt": "2026-09-07T23:26:14.885Z",
+  "protocolSha256": "4db7aae345ecd8d40a48f27cc29a0669504e91ab483c09cbb6653183920965d1",
+  "strategySha256": "1e66c15c5b58c1ca78a6e8f2de5d79497b5e9e50474705ab34c056aeb0ba7ad1",
+  "audit": {
+    "btc": {
+      "rawRows": 3184,
+      "usedRows": 3183,
+      "first": 1502928000000,
+      "lastUsed": 1777852800000,
+      "sha256": "1be87fb911e193e729c9f24e34d0a07a28218f396db99c41091286250ad71413",
+      "invalid": 0,
+      "gaps": 0,
+      "duplicates": 0,
+      "lastRowExcluded": true
+    },
+    "eth": {
+      "rawRows": 3168,
+      "usedRows": 3167,
+      "first": 1502928000000,
+      "lastUsed": 1776470400000,
+      "sha256": "f6111c54cdfe595707f665c8ae2111c35195a1ddc725cee4bb7aa1784d44508d",
+      "invalid": 0,
+      "gaps": 0,
+      "duplicates": 0,
+      "lastRowExcluded": true
+    },
+    "crossCheck": {
+      "checked": 1647,
+      "mismatches": 0,
+      "fields": "OHLC",
+      "independentMirror": "Ruhguevara/Algorithmic_trading blob cafaaeca41df4e0ae65ee28a25a383a4b862ba39"
+    }
+  },
+  "settings": {
+    "mode": "arena",
+    "selected": "atlas",
+    "driver": "rules",
+    "capital": 10000,
+    "maxExposure": 0.35,
+    "maxDrawdown": 0.1,
+    "stopLoss": 0.1,
+    "feeBps": 80,
+    "slippageBps": 5,
+    "model": "",
+    "strategyVersion": "research-v2"
+  },
+  "ranked": [
+    {
+      "id": "pulse",
+      "score": 0.09369743772056893,
+      "positiveYears": 3,
+      "closed": 12
+    },
+    {
+      "id": "atlas",
+      "score": -0.04443780090661187,
+      "positiveYears": 2,
+      "closed": 4
+    },
+    {
+      "id": "sage",
+      "score": -0.05424370396155126,
+      "positiveYears": 2,
+      "closed": 8
+    },
+    {
+      "id": "nova",
+      "score": -0.06119504970433726,
+      "positiveYears": 1,
+      "closed": 13
+    },
+    {
+      "id": "vex",
+      "score": -0.0860095469672803,
+      "positiveYears": 1,
+      "closed": 5
+    }
+  ],
+  "selected": "pulse",
+  "development": [
+    {
+      "label": "2018",
+      "start": "2018-03-06T00:00:00.000Z",
+      "end": "2018-12-31T00:00:00.000Z",
+      "feeBps": 80,
+      "slippageBps": 5,
+      "lagBars": 0,
+      "bars": 301,
+      "agents": [
+        {
+          "id": "atlas",
+          "name": "Atlas",
+          "equity": 10000,
+          "return": 0,
+          "maxDrawdown": 0,
+          "closed": 0,
+          "wins": 0,
+          "winrate": null,
+          "winrateWilson95": null,
+          "fees": 0,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": null,
+          "halted": false,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "nova",
+          "name": "Nova",
+          "equity": 10000,
+          "return": 0,
+          "maxDrawdown": 0,
+          "closed": 0,
+          "wins": 0,
+          "winrate": null,
+          "winrateWilson95": null,
+          "fees": 0,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": null,
+          "halted": false,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "pulse",
+          "name": "Pulse",
+          "equity": 8953.782487394805,
+          "return": -0.10462175126051954,
+          "maxDrawdown": 0.10462175126051954,
+          "closed": 2,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.6576197724933345
+          ],
+          "fees": 101.22526600621057,
+          "profitFactor": 0,
+          "losses": 2,
+          "expectancy": -523.1087563025974,
+          "halted": true,
+          "stops": 1,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 2,
+          "timeInMarket": 0.016611295681063124,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "vex",
+          "name": "Vex",
+          "equity": 9612.217897694589,
+          "return": -0.038778210230541066,
+          "maxDrawdown": 0.038778210230541066,
+          "closed": 1,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.7934506856227534
+          ],
+          "fees": 53.184955966780535,
+          "profitFactor": 0,
+          "losses": 1,
+          "expectancy": -387.7821023054112,
+          "halted": false,
+          "stops": 1,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 1,
+          "timeInMarket": 0.026578073089700997,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "equity": 8960.311995019856,
+          "return": -0.10396880049801438,
+          "maxDrawdown": 0.10396880049801438,
+          "closed": 5,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            5.551115123125783e-17,
+            0.4344824647831612
+          ],
+          "fees": 125.9766785057587,
+          "profitFactor": 0,
+          "losses": 5,
+          "expectancy": -207.93760099602878,
+          "halted": true,
+          "stops": 4,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 5,
+          "timeInMarket": 0.1461794019933555,
+          "bootstrapReturn95": null
+        }
+      ],
+      "aggregate": {
+        "return": -0.049473752397815,
+        "wins": 0,
+        "closed": 8,
+        "winrate": 0
+      },
+      "benchmarks": {
+        "cash": 0,
+        "initial35": {
+          "return": -0.2357569404928459,
+          "maxDrawdown": 0.2526957858187159,
+          "entryAllocation": 0.35,
+          "terminalLiquidation": true
+        },
+        "full": {
+          "return": -0.6735912585509882,
+          "maxDrawdown": 0.7219879594820453,
+          "entryAllocation": 1,
+          "terminalLiquidation": true
+        }
+      }
+    },
+    {
+      "label": "2019",
+      "start": "2019-01-01T00:00:00.000Z",
+      "end": "2019-12-31T00:00:00.000Z",
+      "feeBps": 80,
+      "slippageBps": 5,
+      "lagBars": 0,
+      "bars": 365,
+      "agents": [
+        {
+          "id": "atlas",
+          "name": "Atlas",
+          "equity": 14212.5093075626,
+          "return": 0.42125093075625997,
+          "maxDrawdown": 0.10563359837005393,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 90.28408023990964,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 4212.509307562599,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.24383561643835616,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "nova",
+          "name": "Nova",
+          "equity": 10695.041607170891,
+          "return": 0.0695041607170892,
+          "maxDrawdown": 0.07240384454622895,
+          "closed": 4,
+          "wins": 3,
+          "winrate": 0.75,
+          "winrateWilson95": [
+            0.30064184258241056,
+            0.9544127391902976
+          ],
+          "fees": 250.57524506180374,
+          "profitFactor": 1.9612253233876655,
+          "losses": 1,
+          "expectancy": 173.76040179272263,
+          "halted": false,
+          "stops": 1,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 1,
+          "timeInMarket": 0.136986301369863,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "pulse",
+          "name": "Pulse",
+          "equity": 12762.704772543617,
+          "return": 0.2762704772543616,
+          "maxDrawdown": 0.10323031354361323,
+          "closed": 2,
+          "wins": 2,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.34238022750666547,
+            1
+          ],
+          "fees": 146.71544903555983,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 1381.3523862718089,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.273972602739726,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "vex",
+          "name": "Vex",
+          "equity": 14212.5093075626,
+          "return": 0.42125093075625997,
+          "maxDrawdown": 0.10563359837005393,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 90.28408023990964,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 4212.509307562599,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.24383561643835616,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "equity": 12419.161534833842,
+          "return": 0.24191615348338424,
+          "maxDrawdown": 0.11892379627632921,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 47.70732237437458,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 2419.1615348338432,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.40273972602739727,
+          "bootstrapReturn95": null
+        }
+      ],
+      "aggregate": {
+        "return": 0.286038530593471,
+        "wins": 8,
+        "closed": 9,
+        "winrate": 0.8888888888888888
+      },
+      "benchmarks": {
+        "cash": 0,
+        "initial35": {
+          "return": 0.32365439253939177,
+          "maxDrawdown": 0.32323331103625186,
+          "entryAllocation": 0.35,
+          "terminalLiquidation": true
+        },
+        "full": {
+          "return": 0.9247268358268339,
+          "maxDrawdown": 0.4943008219337047,
+          "entryAllocation": 1,
+          "terminalLiquidation": true
+        }
+      }
+    },
+    {
+      "label": "2020",
+      "start": "2020-01-01T00:00:00.000Z",
+      "end": "2020-12-31T00:00:00.000Z",
+      "feeBps": 80,
+      "slippageBps": 5,
+      "lagBars": 0,
+      "bars": 366,
+      "agents": [
+        {
+          "id": "atlas",
+          "name": "Atlas",
+          "equity": 9293.46766085288,
+          "return": -0.0706532339147119,
+          "maxDrawdown": 0.10042948078003211,
+          "closed": 2,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.6576197724933345
+          ],
+          "fees": 104.82249109005457,
+          "profitFactor": 0,
+          "losses": 2,
+          "expectancy": -353.2661695735601,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 2,
+          "timeInMarket": 0.10109289617486339,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "nova",
+          "name": "Nova",
+          "equity": 9578.919248340666,
+          "return": -0.0421080751659334,
+          "maxDrawdown": 0.07988837660868553,
+          "closed": 4,
+          "wins": 2,
+          "winrate": 0.5,
+          "winrateWilson95": [
+            0.1500389891521544,
+            0.8499610108478456
+          ],
+          "fees": 213.174695099447,
+          "profitFactor": 0.32884998957432093,
+          "losses": 2,
+          "expectancy": -105.27018791483306,
+          "halted": false,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 2,
+          "timeInMarket": 0.16393442622950818,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "pulse",
+          "name": "Pulse",
+          "equity": 16357.333878311161,
+          "return": 0.6357333878311162,
+          "maxDrawdown": 0.05649239686357699,
+          "closed": 7,
+          "wins": 3,
+          "winrate": 0.42857142857142855,
+          "winrateWilson95": [
+            0.15821985525147414,
+            0.7495416354723365
+          ],
+          "fees": 450.6663732430629,
+          "profitFactor": 10.817183667917101,
+          "losses": 4,
+          "expectancy": 908.1905540444516,
+          "halted": false,
+          "stops": 0,
+          "forcedTerminalCloses": 1,
+          "maxLosingStreak": 2,
+          "timeInMarket": 0.5546448087431693,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "vex",
+          "name": "Vex",
+          "equity": 9435.842224382943,
+          "return": -0.05641577756170568,
+          "maxDrawdown": 0.10779962201437521,
+          "closed": 2,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.6576197724933345
+          ],
+          "fees": 107.67743329983931,
+          "profitFactor": 0,
+          "losses": 2,
+          "expectancy": -282.0788878085284,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 2,
+          "timeInMarket": 0.12568306010928962,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "equity": 9258.653477381878,
+          "return": -0.07413465226181215,
+          "maxDrawdown": 0.11457488568780305,
+          "closed": 1,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.7934506856227534
+          ],
+          "fees": 22.2193541691168,
+          "profitFactor": 0,
+          "losses": 1,
+          "expectancy": -741.3465226181208,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 1,
+          "timeInMarket": 0.17759562841530055,
+          "bootstrapReturn95": null
+        }
+      ],
+      "aggregate": {
+        "return": 0.07848432978539062,
+        "wins": 5,
+        "closed": 16,
+        "winrate": 0.3125
+      },
+      "benchmarks": {
+        "cash": 0,
+        "initial35": {
+          "return": 1.0309242951626527,
+          "maxDrawdown": 0.23275457874017413,
+          "entryAllocation": 0.35,
+          "terminalLiquidation": true
+        },
+        "full": {
+          "return": 2.9454979861790083,
+          "maxDrawdown": 0.5359780595416246,
+          "entryAllocation": 1,
+          "terminalLiquidation": true
+        }
+      }
+    },
+    {
+      "label": "2021",
+      "start": "2021-01-01T00:00:00.000Z",
+      "end": "2021-12-31T00:00:00.000Z",
+      "feeBps": 80,
+      "slippageBps": 5,
+      "lagBars": 0,
+      "bars": 365,
+      "agents": [
+        {
+          "id": "atlas",
+          "name": "Atlas",
+          "equity": 10171.355069771704,
+          "return": 0.017135506977170367,
+          "maxDrawdown": 0.1060111087903941,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 57.69412670933791,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 171.35506977170326,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.057534246575342465,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "nova",
+          "name": "Nova",
+          "equity": 9847.621680215658,
+          "return": -0.015237831978434202,
+          "maxDrawdown": 0.10715226743024031,
+          "closed": 5,
+          "wins": 2,
+          "winrate": 0.4,
+          "winrateWilson95": [
+            0.11762077423265177,
+            0.7692757187239805
+          ],
+          "fees": 291.9413416055963,
+          "profitFactor": 0.8630125133855935,
+          "losses": 3,
+          "expectancy": -30.47566395686845,
+          "halted": true,
+          "stops": 1,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 3,
+          "timeInMarket": 0.10136986301369863,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "pulse",
+          "name": "Pulse",
+          "equity": 10171.355069771704,
+          "return": 0.017135506977170367,
+          "maxDrawdown": 0.1060111087903941,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 57.69412670933791,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 171.35506977170326,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.057534246575342465,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "vex",
+          "name": "Vex",
+          "equity": 9745.587383103557,
+          "return": -0.025441261689644334,
+          "maxDrawdown": 0.10446870967980659,
+          "closed": 1,
+          "wins": 0,
+          "winrate": 0,
+          "winrateWilson95": [
+            0,
+            0.7934506856227534
+          ],
+          "fees": 54.26051633298188,
+          "profitFactor": 0,
+          "losses": 1,
+          "expectancy": -254.41261689644398,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 1,
+          "timeInMarket": 0.0684931506849315,
+          "bootstrapReturn95": null
+        },
+        {
+          "id": "sage",
+          "name": "Sage",
+          "equity": 10845.710406150389,
+          "return": 0.08457104061503884,
+          "maxDrawdown": 0.10207054452489717,
+          "closed": 1,
+          "wins": 1,
+          "winrate": 1,
+          "winrateWilson95": [
+            0.20654931437724644,
+            0.9999999999999999
+          ],
+          "fees": 35.01820036886285,
+          "profitFactor": null,
+          "losses": 0,
+          "expectancy": 845.7104061503887,
+          "halted": true,
+          "stops": 0,
+          "forcedTerminalCloses": 0,
+          "maxLosingStreak": 0,
+          "timeInMarket": 0.37534246575342467,
+          "bootstrapReturn95": null
+        }
+      ],
+      "aggregate": {
+        "return": 0.015632592180260207,
+        "wins": 5,
+        "closed": 9,
+        "winrate": 0.5555555555555556
+      },
+      "benchmarks": {
+        "cash": 0,
+        "initial35": {
+          "return": 0.21059017900612953,
+          "maxDrawdown": 0.2869256641601772,
+          "entryAllocation": 0.35,
+          "terminalLiquidation": true
+        },
+        "full": {
+          "return": 0.6016862257317992,
+          "maxDrawdown": 0.5314143088612964,
+          "entryAllocation": 1,
+          "terminalLiquidation": true
+        }
+      }
+    }
+  ]
+}

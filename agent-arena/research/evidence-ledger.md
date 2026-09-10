@@ -1,0 +1,15 @@
+# Evidence and gap ledger — 2026-09-07
+
+| Claim | Primary source, date | Confidence and scope | Gap / contradiction / resolution |
+|---|---|---|---|
+| High turnover needs realistic costs | Kraken Fee Structures, accessed 2026-09-07, https://www.kraken.com/features/fee-schedule | High for displayed spot base taker 0.80%, not any user's exact tier | Old 40bps kept as sensitivity; 80bps fixed conservative assumption; no historical tariff assertion |
+| Technical trends warrant testing, not profit claims | Hudson & Urquhart, Technical trading and cryptocurrencies, online 2019-08-30 / issue 2021, https://link.springer.com/article/10.1007/s10479-019-03357-1 | High, full text section6.5 read | BTC OOS Jan–June2018 negative despite positive historical tests; candidate performance must be independent |
+| Momentum evidence is mixed | Grobys & Sapkota, Cryptocurrencies and momentum, 2019, https://osuva.uwasa.fi/bitstreams/ffee5cb1-92a8-443e-a117-cbaacd8a1028/download | High for study, 143coins 2014–18, not current BTCdaily | Monthly long/short differs from application; no extrapolation of effect size |
+| Repeated strategy searching creates selection bias | Bailey et al., Online tools for demonstration of backtest overfitting, 2015-11-29, https://www.davidhbailey.com/dhbpapers/overfit-tools.pdf | High methodological evidence | Freeze5 candidates, save selection beforeOOS, report all failures; does not eliminate all bias |
+| Official Binance archives have checksums | Binance Public Data README, accessed2026-09-07, https://github.com/binance/binance-public-data | High for mechanism | Direct shell networkapproval canceled; no circumvention. Connected GitHub mirror used and source uncertainty disclosed |
+| New dataset has plausible provenance | marek3993/trendatlas-crypto fetch_binance_klines.py and examples/download_full_history.py, accessed2026-09-07 | Medium; codepoints BinanceAPI and correct CSVschema | Cannot certify CSV generatedbythatcode; 1647 overlapping OHLCbars match secondmirror, remainingperiod uncertified |
+| V2 gains are robust enough for live | Own v2-results.json | Not supported | None pass predeclared gate; Pulse2025fresh negative, sparsecloses, bootstrapincludeszero |
+
+Search log: NBER crypto momentum; author-site backtest overfitting; Kraken official spot fees; Binance official archive/checksum docs; targeted Github CSV name/schema/size queries; source collection scripts; primary disconfirming momentum and BitcoinOOS papers. NBER page/PDF retrieval unavailable; excluded from consequential conclusions. Two candidate CSVs rejected as synthetic/suspicious before use. No forum anecdotes or preprint headline returns used as targets. Stop reason: evidence adequate to implement and reject strongerprofitability claim; further candidate tuning would consume already-open finaltest.
+
+The report is synthesized in report-source.md and delivered as the application's /research report page. JSON data drives numeric tables there. React quality review keeps report computation server-side; no large research data added to the interactive dashboard's client bundle.

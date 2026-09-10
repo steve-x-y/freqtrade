@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initial,defaults,execute} from '../lib/engine.ts';
+import {replaySegment,allocationCap,replay} from '../lib/replay.ts';
+const s={...defaults,strategyVersion:'research-v2',feeBps:0,slippageBps:0,stopLoss:.1,maxDrawdown:.1};
+const buy={action:'BUY',allocation:.35,confidence:0,reason:'test',source:'test'};
+test('intrabar stop sells at crossed barrier, not daily low',()=>{const a=initial(s).agents[0];execute(a,buy,100,0,s);const t=replaySegment(a,100,70,1,s);assert.equal(t.price,90);assert.equal(a.quantity,0);});
+test('opening gap cannot fill at missed stop',()=>{const a=initial(s).agents[0];execute(a,buy,100,0,s);const t=execute(a,{...buy,action:'HOLD'},70,1,s);assert.equal(t.price,70);assert.equal(a.quantity,0);});
+test('drawdown barrier liquidates despite floating point rounding',()=>{const a=initial(s).agents[0];execute(a,buy,100,0,s);replaySegment(a,100,200,1,s);const t=replaySegment(a,200,100,2,s);assert.ok(t);assert.equal(a.quantity,0);assert.equal(a.halted,true);});
+test('risk budget accounts for fees and hard exposure cap',()=>{assert.equal(allocationCap(s,'fixed10'),.1);assert.ok(allocationCap({...s,feeBps:80},'risk1')<.1);});
+test('future bars cannot alter completed replay fills',()=>{const bars=Array.from({length:230},(_,i)=>({time:i*86400000,open:100+i,high:102+i,low:99+i,close:101+i,volume:100}));const cutoff=220*86400000;const a=replay(bars,s,'fixed10','high-first',0,cutoff);const changed=bars.map(c=>c.time>cutoff?{...c,open:9999,high:10000,low:9998,close:9999}:c);const b=replay(changed,s,'fixed10','high-first',0,cutoff);assert.deepEqual(a.trades,b.trades);});

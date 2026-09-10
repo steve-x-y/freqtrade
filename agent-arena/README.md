@@ -1,0 +1,133 @@
+# Agent Arena
+
+A working trading laboratory with five independent agents, a single-bot mode, durable paper portfolios, real BTC/USD candles, model-provider connections, and a historical strategy baseline.
+
+**Status: paper-trading prototype. No live exchange orders, validated profitable strategy, or commercial SaaS billing.**
+
+This application is self-contained in `agent-arena/` on the `codex/agent-arena-20260907` branch of Steve's Freqtrade fork. It does not use or modify Freqtrade's execution engine.
+
+## What works
+
+- Atlas (trend), Nova (mean reversion), Pulse (momentum), Vex (breakout), Sage (capital preservation).
+- Five independent strategy prompts using one selected AI model. These are not five different model providers competing.
+- xAI/Grok, DeepSeek and OpenRouter connections; model list fetched from the provider; API keys encrypted with AES-GCM and owner-associated data.
+- Rules baseline available without an AI key, clearly labeled. AI failures do not silently substitute rules.
+- Kraken public BTC/USD five-minute data, discarding the incomplete last candle. Stale data pauses a forward session.
+- Independent paper accounts, target exposure limits, stop-loss checks, drawdown liquidation/halt, configurable fee/slippage assumptions, cost basis and realized P&L.
+- D1 portfolios and history isolated by authenticated owner. A database lease serializes mutations and completed-candle timestamps prevent duplicate decisions.
+- Backtests use earlier completed candles and execute at the next candle's open. No strategy parameter search is performed on the replay window.
+- Ledger and JSON export; current session retains 1,000 fills and 1,500 equity observations. Export before resetting.
+
+## Open the hosted application
+
+Use the private application link supplied in ChatGPT. Start with **Run historical baseline** or **Start session** for rules-based paper trading. For AI decisions:
+
+1. Pause the session and open **Connect AI**.
+2. Select your provider and supply its API key. The application verifies the connection before saving.
+3. Open **Settings**, start a new session if necessary, choose **Connected AI model**, and select a model that supports JSON chat completions.
+4. Save and start. Provider API charges are billed to your provider account, separately from ChatGPT.
+
+The provider's model directory may include models that are unsuitable for text/JSON chat completions. A rejected model produces an explicit provider error and no substitute trade. Provider keys were not available during implementation, so paid live inference has not been verified.
+
+## Automation and execution limits
+
+The hosted version checks every 35 seconds **while the tab is open**; browsers may throttle background tabs. It decides once per completed five-minute candle. Opening a persisted running session resumes browser checks; it does not replay missed historical trades.
+
+`worker/index.ts` includes a scheduled handler for a separately configured Cloudflare Cron Trigger. **No Cron Trigger has been installed for the private Sites deployment.** Do not claim 24/7 operation there. The scheduled handler processes at most 10 running owners per invocation and is intended for a small private deployment.
+
+This application cannot place live exchange orders. Adding real execution requires selecting a broker/exchange and implementing account reconciliation, persistent order intents, idempotent client order IDs, partial-fill handling, uncertain-result recovery, and exchange-specific quantity constraints. Those cannot be inferred from the user's unnamed trading app. The paper ledger must never be treated as an exchange balance.
+
+Stop loss is checked at observed prices, not continuously or intrabar. Gaps can exceed thresholds. Pausing stops all automated checks and leaves positions open. Results include configured fee and slippage assumptions, but exclude AI API costs, taxes and live market impact. Confidence is self-reported, not calibrated. The original five-minute profile has a maximum 719-bar window (under 60 hours). V2 uses up to 719 daily bars, including 201 warmup bars. Neither window establishes profitability.
+
+## Development
+
+Requires Node.js 24+ for native TypeScript test execution; Linux for the bundled build scripts.
+
+```sh
+cd agent-arena
+npm ci
+npm run test:engine
+npm run typecheck
+npm run build
+npm run test:runtime
+```
+
+The app targets Cloudflare Workers through Vinext. Logical storage is `DB`; schema lives in `db/schema.ts` and generated SQL in `drizzle/`.
+
+Production configuration:
+
+| Variable/binding | Purpose |
+| --- | --- |
+| `DB` | Cloudflare D1 database with generated migrations applied |
+| `KEY_ENCRYPTION_SECRET` | At least 32 random characters; set as a server secret and keep stable |
+| `ASSETS` | Generated static assets binding |
+
+Do not rotate the encryption secret without re-encrypting saved provider connections. Never commit `.env`, `.dev.vars`, or real provider keys.
+
+The private Sites dispatcher authenticates users and supplies `oai-authenticated-user-id`. A separately hosted deployment **must verify authentication and strip/replace this header at a trusted edge**; accepting caller-supplied headers on the public internet is insecure. The GitHub source is not a turnkey public multi-tenant SaaS.
+
+The `.openai/hosting.json` project identity is omitted from the GitHub copy; its logical D1 binding is retained. Do not deploy to another person's Site identity.
+
+## Verification
+
+`npm run test:engine` covers accounting, exposure caps, repeated allocations, gap stops, drawdown halts, malformed model output, no-lookahead replay, portfolio isolation, encrypted key isolation and provider failure handling. Runtime integration checks use a local isolated Worker and test data; they do not place real trades.
+
+## References
+
+- [Kraken OHLC API](https://docs.kraken.com/api-reference/market-data/get-ohlc-data): last candle is incomplete; history capped at 720 entries.
+- [xAI structured outputs](https://docs.x.ai/developers/model-capabilities/text/structured-outputs).
+- [Alpha Arena concept](https://nof1.ai/blog/TechPost1): inspiration for competing agents, no affiliation.
+
+## Before selling
+
+Validate longer forward results net of all costs, choose and test an exchange integration, add your own authentication and customer isolation for external hosting, set up durable scheduling and monitoring, and define what the product actually promises. This release is an engineering prototype, not evidence of a profitable trading system.
+
+Implementation verification: 10 engine/AI tests passed; Worker integration covers concurrent requests, duplicate candle prevention, authenticated owner isolation, CSRF origin rejection, error pause and separate backtests. Direct outbound Kraken verification from the build environment timed out, so deployed live-feed availability remains unverified. No paid AI inference or exchange order was executed. Browser visual testing was not performed.
+
+## Historical validation
+
+See [the full Indonesian report](research/REPORT.md) and [machine-readable results](research/validation-results.json). Rules baseline: 26 wins / 220 closed trades (11.82%), combined return −10.14%; chronological holdout 9/217 (4.15%). These are historical paper simulations, not AI or live performance. Download the pinned dataset with `python3 research/fetch-data.py`, then run `npm run validate:history`.
+
+## Research V2 — daily, experimental
+
+The application now includes `/research`, an Indonesian evidence-backed report with all candidates, validation, benchmarks, cost stresses, yearly failures and source links. Use **Review V2 settings** for an optional daily profile; existing sessions and settings are preserved. A new session is required to change the strategy profile. This button fills a settings draft; it does not place trades or reset data.
+
+V2 uses five frozen daily strategies, 201-day warmup, cost-aware entry thresholds, a three-day exit cooldown and a proposed 10% observation stop. Suggested paper settings use 80bps fee per side, 5bps slippage, 35% entry cap and 10% drawdown halt. The daily market adapter, AI timeframe and cost context are aligned, but historical V2 results use deterministic rules, not AI calls.
+
+Development-only selection (2018–2021) picked **Pulse** before validation/final results were examined. Final BTC test (2024-01-01–2026-05-04): all-five return **+5.25%**, 13/28 closed trades winning (46.43%); Pulse **+1.95%, 1/5 wins**, then halted. A freshly funded Pulse account in 2025 lost **10.01%**. No candidate passed all predeclared evidence gates. Do not select Atlas or Sage retrospectively and claim the winner was known beforehand. This is not a statistically validated edge or a reliable income product.
+
+The report charges terminal liquidation, unlike the app's mark-to-market quick backtest. Primary daily data is a third-party Binance mirror; 1,647 older overlapping OHLC days were cross-checked, not the whole modern series. Research daily risk observations differ from the forward tab's more frequent risk checks. Cost sensitivity freezes signal thresholds at 80bps while varying execution fees; changing costs still changes position sizes, stop basis and halt timing.
+
+```sh
+python3 research/fetch-v2-data.py
+npm run research:develop
+npm run research:evaluate
+npm run test:engine
+npm run typecheck
+npm run build
+```
+
+Reproduction downloads pinned public blobs with checksum verification, without credentials. `EXPERIMENT-V2.md` and `v2-selection.json` preserve the pre-evaluation protocol and source hashes. The five candidate rules were not re-tuned after final evaluation. 20 tests pass: 19 unit/adapter checks plus a server-rendered report consistency check. Browser QA, paid model inference and live broker orders are unverified/not executed; direct outbound market-data access was canceled by the environment's network control and not bypassed.
+
+### V3 execution audit
+
+`npm run research:replay` reproduces 48 OHLC execution scenarios from the pinned V2 datasets. `/research/v3` displays every result. This is exploratory data reuse, not an untouched holdout. Both daily path orders check stop and drawdown barriers, open gaps fill at the open, and all terminal exits include costs. Three fixed allocation policies are compared without changing V2 signals or automatically promoting a winner. Continuous monitoring assumed by replay differs from tab-dependent forward paper operation. No new live or AI performance claim.
+
+### Forward execution safeguards (bid-ask-v1)
+
+Forward paper fills now buy at Kraken ask and sell at bid, plus configured slippage and fees. Equity and risk use bid. Public quotes are checked for response age and validity; receipt time is local, not an exchange book timestamp. Top-of-book data does not model order depth, partial fills, or queue priority.
+
+New entries are blocked when spread exceeds 25 bps or on the first check after a monitoring gap over 90 seconds. Protective paper exits still run. A fixed 2% per-agent daily equity loss threshold closes the position and blocks re-entry until the next UTC day. The daily reference starts at the first observation of that UTC day using the last marked equity; it is not an exact midnight valuation. Gaps and fees can exceed the loss threshold. Limits persist in the saved session across pause/resume.
+
+`Close all paper` pauses and closes all paper holdings, including inactive agents. A feed failure persists the paused state and explicitly leaves holdings open. Reset refuses to discard open holdings. Position risk checks precede candle/model requests, so a later candle failure cannot suppress a risk exit already observed on a valid quote.
+
+The Readiness tab exposes quote observations, monitored intervals, gaps, blocked entries, daily blocks, and strategy rules. Coverage excludes intervals over 90 seconds and is not proof of continuous uptime. Existing session history is retained; evidence starts at the upgrade boundary. These safeguards change forward execution and were not part of the V2/V3 historical results.
+
+Validation: 37 deterministic/fixture tests pass, including actual route handlers with in-memory storage and mocked market data. TypeScript and production build are checked separately. The native Worker/D1 integration suite, authenticated broker operations, real model inference, and browser tests are not claimed as verified in this update.
+
+Still required before real-money readiness: identify the intended exchange/account, deploy independently monitored continuous execution, implement and verify authenticated order/partial-fill/reconciliation workflows and exchange-held protective orders, and collect prospective strategy evidence net of all operating costs. No live switch or broker secrets are accepted by this app.
+
+Primary references checked 8 September 2026:
+- Kraken spot ticker schema: https://docs.kraken.com/api-reference/market-data/get-ticker-information
+- Exchange stop-loss behavior and limitations: https://www.freqtrade.io/en/stable/stoploss/
+- Separation of paper and live databases: https://www.freqtrade.io/en/stable/configuration/
